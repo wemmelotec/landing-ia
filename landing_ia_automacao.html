@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Master | Transforme dados em resultados</title>
+    <style>
+        :root {
+            --primary-blue: #2563EB;
+            --primary-purple: #7C3AED;
+            --secondary-cyan: #06B6D4;
+            --secondary-gray: #64748B;
+            --accent-green: #10B981;
+            --white: #FFFFFF;
+            --black: #0F172A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: var(--white);
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .hero {
+            padding: 80px 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><circle cx="20" cy="20" r="2" fill="%232563EB22"/><circle cx="40" cy="40" r="2" fill="%237C3AED22"/><circle cx="60" cy="60" r="2" fill="%232563EB22"/><circle cx="80" cy="80" r="2" fill="%237C3AED22"/></svg>') repeat;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: var(--secondary-gray);
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            background: var(--primary-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .benefits {
+            padding: 80px 0;
+            background-color: #F8FAFC;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--black);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .benefit-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+        
+        .benefit-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+        
+        .benefit-description {
+            color: var(--secondary-gray);
+        }
+        
+        .modules {
+            padding: 80px 0;
+        }
+        
+        .modules-list {
+            margin-top: 40px;
+        }
+        
+        .module-item {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-left: 5px solid var(--primary-blue);
+        }
+        
+        .module-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+        }
+        
+        .module-number {
+            background: var(--primary-blue);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: 700;
+        }
+        
+        .module-description {
+            color: var(--secondary-gray);
+            padding-left: 55px;
+        }
+        
+        .testimonials {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-blue)11, var(--primary-purple)11);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--secondary-gray);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+        }
+        
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--black);
+        }
+        
+        .author-info p {
+            color: var(--secondary-gray);
+            font-size: 14px;
+        }
+        
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><circle cx="20" cy="20" r="2" fill="%232563EB22"/><circle cx="40" cy="40" r="2" fill="%237C3AED22"/><circle cx="60" cy="60" r="2" fill="%232563EB22"/><circle cx="80" cy="80" r="2" fill="%237C3AED22"/></svg>') repeat;
+        }
+        
+        .cta-box {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 60px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+        
+        .cta-description {
+            font-size: 18px;
+            color: var(--secondary-gray);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        .submit-button {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            background: var(--primary-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .guarantee {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: var(--secondary-gray);
+            font-size: 14px;
+        }
+        
+        .guarantee-icon {
+            margin-right: 10px;
+            color: var(--accent-green);
+        }
+        
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-link {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--primary-blue);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .social-icon {
+            color: var(--white);
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            color: var(--primary-blue);
+        }
+        
+        .footer-copyright {
+            color: var(--secondary-gray);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-image {
+                order: -1;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+            
+            .cta-box {
+                padding: 30px;
+            }
+            
+            .cta-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-brain"></i></span>
+                IA Master
+            </div>
+            <a href="#cadastro" class="cta-button">Quero Aprender IA</a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Domine Inteligência Artificial e Transforme sua Carreira</h1>
+                <p class="subtitle">Aprenda a utilizar IA para automatizar processos, criar conteúdo e aumentar sua produtividade, mesmo sem conhecimento técnico prévio.</p>
+                <a href="#cadastro" class="cta-button">Garantir Minha Vaga <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1677442135968-6d89469c6409?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Inteligência Artificial em ação">
+            </div>
+        </div>
+    </section>
+    
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Por que aprender IA agora?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="benefit-title">Aumente sua Produtividade</h3>
+                    <p class="benefit-description">Automatize tarefas repetitivas e foque no que realmente importa, economizando horas do seu dia.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="benefit-title">Destaque-se no Mercado</h3>
+                    <p class="benefit-description">Profissionais com habilidades em IA são cada vez mais valorizados e recebem salários até 40% maiores.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="benefit-title">Crie Conteúdo Incrível</h3>
+                    <p class="benefit-description">Produza textos, imagens e estratégias de alta qualidade em uma fração do tempo tradicional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="modules">
+        <div class="container">
+            <h2 class="section-title">O que você vai aprender</h2>
+            <div class="modules-list">
+                <div class="module-item">
+                    <h3 class="module-title"><span class="module-number">1</span> Fundamentos da IA</h3>
+                    <p class="module-description">Entenda os conceitos básicos de IA e como ela está transformando o mercado de trabalho, sem complicações técnicas.</p>
+                </div>
+                <div class="module-item">
+                    <h3 class="module-title"><span class="module-number">2</span> Ferramentas Práticas de IA</h3>
+                    <p class="module-description">Domine as principais ferramentas de IA disponíveis no mercado e aprenda a aplicá-las em projetos reais.</p>
+                </div>
+                <div class="module-item">
+                    <h3 class="module-title"><span class="module-number">3</span> IA para Marketing e Conteúdo</h3>
+                    <p class="module-description">Crie estratégias de marketing, textos persuasivos e conteúdo visual utilizando IA para aumentar seus resultados.</p>
+                </div>
+                <div class="module-item">
+                    <h3 class="module-title"><span class="module-number">4</span> Automação de Processos com IA</h3>
+                    <p class="module-description">Automatize fluxos de trabalho e processos empresariais para economizar tempo e recursos.</p>
+                </div>
+                <div class="module-item">
+                    <h3 class="module-title"><span class="module-number">5</span> Projeto Prático Final</h3>
+                    <p class="module-description">Aplique todo o conhecimento adquirido em um projeto real que resolva um problema específico do seu negócio ou carreira.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">O que dizem nossos alunos</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Nunca imaginei que poderia usar IA no meu dia a dia. Hoje economizo mais de 15 horas por semana com as técnicas que aprendi no curso."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Marcos Ribeiro</h4>
+                            <p>Gerente de Marketing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Consegui triplicar minha produção de conteúdo e ainda melhorar a qualidade. O investimento no curso se pagou em menos de um mês."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CS</div>
+                        <div class="author-info">
+                            <h4>Carla Santos</h4>
+                            <p>Produtora de Conteúdo</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Mesmo sem conhecimento técnico, consegui implementar soluções de IA na minha empresa que economizaram R$15.000 por mês em processos manuais."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RA</div>
+                        <div class="author-info">
+                            <h4>Roberto Almeida</h4>
+                            <p>Empresário</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="cadastro" class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2 class="cta-title">Garanta sua vaga com condição especial</h2>
+                <p class="cta-description">Preencha o formulário abaixo e receba em primeira mão o acesso ao curso com 50% de desconto na pré-venda.</p>
+                <form id="lead-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Seu melhor e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Seu WhatsApp com DDD" required>
+                    </div>
+                    <button type="submit" class="submit-button">QUERO GARANTIR MINHA VAGA <i class="fas fa-lock"></i></button>
+                </form>
+                <div class="guarantee">
+                    <span class="guarantee-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span>Seus dados estão protegidos e não serão compartilhados.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">IA Master</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Termos de Uso</a>
+                <a href="#" class="footer-link">Política de Privacidade</a>
+                <a href="#" class="footer-link">Fale Conosco</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="footer-copyright">© 2025 IA Master. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado por se cadastrar! Em breve entraremos em contato.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
