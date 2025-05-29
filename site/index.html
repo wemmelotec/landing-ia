@@ -547,15 +547,16 @@
             <div class="cta-box">
                 <h2 class="cta-title">Garanta sua vaga com condição especial</h2>
                 <p class="cta-description">Preencha o formulário abaixo e receba em primeira mão o acesso ao curso com 50% de desconto na pré-venda.</p>
-                <form id="lead-form">
+                <form id="lead-form" name="lead-form" method="POST" data-netlify="true" netlify>
+                    <input type="hidden" name="form-name" value="lead-form">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Seu nome completo" required>
+                        <input type="text" class="form-control" name="nome" placeholder="Seu nome completo" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Seu melhor e-mail" required>
+                        <input type="email" class="form-control" name="email" placeholder="Seu melhor e-mail" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" class="form-control" placeholder="Seu WhatsApp com DDD" required>
+                        <input type="tel" class="form-control" name="whatsapp" placeholder="Seu WhatsApp com DDD" required>
                     </div>
                     <button type="submit" class="submit-button">QUERO GARANTIR MINHA VAGA <i class="fas fa-lock"></i></button>
                 </form>
@@ -586,11 +587,11 @@
     </footer>
     
     <script>
-        document.getElementById('lead-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Obrigado por se cadastrar! Em breve entraremos em contato.');
-            this.reset();
-        });
+        // document.getElementById('lead-form').addEventListener('submit', function(e) {
+        //     e.preventDefault();
+        //     alert('Obrigado por se cadastrar! Em breve entraremos em contato.');
+        //     this.reset();
+        // });
     </script>
 </body>
 </html>
