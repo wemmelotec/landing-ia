@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IA Master | Transforme dados em resultados</title>
+    <title>IA Master | Domine a Inteligência Artificial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-blue: #2563EB;
@@ -13,13 +15,14 @@
             --accent-green: #10B981;
             --white: #FFFFFF;
             --black: #0F172A;
+            --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', 'Inter', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         
         body {
@@ -34,10 +37,16 @@
             padding: 0 20px;
         }
         
+        /* Header */
         header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            background: var(--gradient-primary);
             color: var(--white);
             padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .header-content {
@@ -47,41 +56,58 @@
         }
         
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             display: flex;
             align-items: center;
+            gap: 10px;
         }
         
-        .logo-icon {
-            margin-right: 10px;
-            font-size: 32px;
-        }
-        
+        /* Hero Section */
         .hero {
-            padding: 80px 0;
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><circle cx="20" cy="20" r="2" fill="%232563EB22"/><circle cx="40" cy="40" r="2" fill="%237C3AED22"/><circle cx="60" cy="60" r="2" fill="%232563EB22"/><circle cx="80" cy="80" r="2" fill="%237C3AED22"/></svg>') repeat;
+            opacity: 0.5;
         }
         
         .hero-content {
-            display: flex;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
+            align-items: center;
+            position: relative;
         }
         
         .hero-text {
-            flex: 1;
+            padding-right: 20px;
         }
         
         .hero-image {
-            flex: 1;
-            text-align: center;
+            position: relative;
         }
         
         .hero-image img {
             max-width: 100%;
-            border-radius: 10px;
+            border-radius: 20px;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(0deg);
         }
         
         h1 {
@@ -89,7 +115,7 @@
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -101,25 +127,45 @@
             margin-bottom: 30px;
         }
         
+        /* CTA Button */
         .cta-button {
             display: inline-block;
-            background: var(--primary-blue);
+            background: var(--gradient-primary);
             color: var(--white);
-            padding: 15px 30px;
-            border-radius: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
             font-weight: 600;
             font-size: 18px;
             text-decoration: none;
             transition: all 0.3s ease;
             margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
         }
         
         .cta-button:hover {
-            background: var(--primary-purple);
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
+        /* Benefits Section */
         .benefits {
             padding: 80px 0;
             background-color: #F8FAFC;
@@ -130,6 +176,17 @@
             font-size: 36px;
             margin-bottom: 60px;
             color: var(--black);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            margin: 20px auto 0;
+            border-radius: 2px;
         }
         
         .benefits-grid {
@@ -140,10 +197,11 @@
         
         .benefit-card {
             background: var(--white);
-            border-radius: 10px;
+            border-radius: 16px;
             padding: 30px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         .benefit-card:hover {
@@ -152,9 +210,12 @@
         }
         
         .benefit-icon {
-            font-size: 48px;
+            font-size: 40px;
             margin-bottom: 20px;
-            color: var(--primary-blue);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .benefit-title {
@@ -168,6 +229,7 @@
             color: var(--secondary-gray);
         }
         
+        /* Modules Section */
         .modules {
             padding: 80px 0;
         }
@@ -178,11 +240,16 @@
         
         .module-item {
             background: var(--white);
-            border-radius: 10px;
+            border-radius: 16px;
             padding: 30px;
             margin-bottom: 20px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             border-left: 5px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .module-item:hover {
+            transform: translateX(10px);
         }
         
         .module-title {
@@ -195,7 +262,7 @@
         }
         
         .module-number {
-            background: var(--primary-blue);
+            background: var(--gradient-primary);
             color: var(--white);
             width: 40px;
             height: 40px;
@@ -212,9 +279,10 @@
             padding-left: 55px;
         }
         
+        /* Testimonials Section */
         .testimonials {
             padding: 80px 0;
-            background: linear-gradient(135deg, var(--primary-blue)11, var(--primary-purple)11);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
         }
         
         .testimonials-grid {
@@ -225,15 +293,41 @@
         
         .testimonial-card {
             background: var(--white);
-            border-radius: 10px;
+            border-radius: 16px;
             padding: 30px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
         }
         
         .testimonial-text {
             font-style: italic;
             margin-bottom: 20px;
             color: var(--secondary-gray);
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 40px;
+            color: var(--primary-blue);
+            opacity: 0.2;
+            position: absolute;
+        }
+        
+        .testimonial-text::before {
+            left: 0;
+            top: -10px;
+        }
+        
+        .testimonial-text::after {
+            right: 0;
+            bottom: -30px;
         }
         
         .testimonial-author {
@@ -246,355 +340,279 @@
             height: 50px;
             border-radius: 50%;
             margin-right: 15px;
-            background-color: var(--primary-blue);
+            background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-weight: 700;
+            font-weight: 600;
         }
         
         .author-info h4 {
             font-size: 18px;
-            margin-bottom: 5px;
+            font-weight: 600;
             color: var(--black);
         }
         
         .author-info p {
-            color: var(--secondary-gray);
             font-size: 14px;
-        }
-        
-        .cta-section {
-            padding: 80px 0;
-            text-align: center;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="white"/><circle cx="20" cy="20" r="2" fill="%232563EB22"/><circle cx="40" cy="40" r="2" fill="%237C3AED22"/><circle cx="60" cy="60" r="2" fill="%232563EB22"/><circle cx="80" cy="80" r="2" fill="%237C3AED22"/></svg>') repeat;
-        }
-        
-        .cta-box {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 60px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .cta-title {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: var(--black);
-        }
-        
-        .cta-description {
-            font-size: 18px;
             color: var(--secondary-gray);
-            margin-bottom: 30px;
+        }
+        
+        /* Form Section */
+        .form-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         
         .form-group {
             margin-bottom: 20px;
         }
         
-        .form-control {
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--black);
+        }
+        
+        .form-group input {
             width: 100%;
-            padding: 15px;
-            border: 1px solid #E2E8F0;
+            padding: 12px;
+            border: 2px solid #E2E8F0;
             border-radius: 8px;
             font-size: 16px;
             transition: all 0.3s ease;
         }
         
-        .form-control:focus {
+        .form-group input:focus {
             outline: none;
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         
-        .submit-button {
-            background: var(--primary-blue);
-            color: var(--white);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        
-        .submit-button:hover {
-            background: var(--primary-purple);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        
-        .guarantee {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-            color: var(--secondary-gray);
-            font-size: 14px;
-        }
-        
-        .guarantee-icon {
-            margin-right: 10px;
-            color: var(--accent-green);
-        }
-        
+        /* Footer */
         footer {
             background: var(--black);
             color: var(--white);
             padding: 40px 0;
-            text-align: center;
         }
         
         .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
         }
         
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 700;
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 600;
             margin-bottom: 20px;
         }
         
-        .footer-links {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
+        .footer-section p {
+            color: #94A3B8;
+            margin-bottom: 15px;
         }
         
-        .footer-link {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-link:hover {
-            color: var(--primary-blue);
-        }
-        
-        .footer-social {
+        .social-links {
             display: flex;
             gap: 15px;
-            margin-bottom: 20px;
         }
         
-        .social-icon {
+        .social-links a {
             color: var(--white);
             font-size: 20px;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
-        .social-icon:hover {
+        .social-links a:hover {
             color: var(--primary-blue);
+            transform: translateY(-2px);
         }
         
-        .footer-copyright {
-            color: var(--secondary-gray);
-            font-size: 14px;
-        }
-        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .hero-content {
-                flex-direction: column;
+                grid-template-columns: 1fr;
+                text-align: center;
             }
             
-            .hero-image {
-                order: -1;
+            .hero-text {
+                padding-right: 0;
             }
             
             h1 {
                 font-size: 36px;
             }
             
-            .section-title {
-                font-size: 30px;
+            .subtitle {
+                font-size: 18px;
             }
             
-            .cta-box {
-                padding: 30px;
-            }
-            
-            .cta-title {
-                font-size: 30px;
+            .benefits-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <div class="container header-content">
-            <div class="logo">
-                <span class="logo-icon"><i class="fas fa-brain"></i></span>
-                IA Master
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    IA Master
+                </div>
             </div>
-            <a href="#cadastro" class="cta-button">Quero Aprender IA</a>
         </div>
     </header>
-    
+
     <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Domine InteligÃªncia Artificial e Transforme sua Carreira</h1>
-                <p class="subtitle">Aprenda a utilizar IA para automatizar processos, criar conteÃºdo e aumentar sua produtividade, mesmo sem conhecimento tÃ©cnico prÃ©vio.</p>
-                <a href="#cadastro" class="cta-button">Garantir Minha Vaga <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1677442135968-6d89469c6409?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="InteligÃªncia Artificial em aÃ§Ã£o">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Domine a Inteligência Artificial</h1>
+                    <p class="subtitle">Aprenda a utilizar as mais avançadas ferramentas de IA para impulsionar sua carreira e negócios.</p>
+                    <a href="#form" class="cta-button">Comece Agora</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995" alt="IA Master">
+                </div>
             </div>
         </div>
     </section>
-    
+
     <section class="benefits">
         <div class="container">
-            <h2 class="section-title">Por que aprender IA agora?</h2>
+            <h2 class="section-title">Por que escolher nosso curso?</h2>
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
-                    <h3 class="benefit-title">Aumente sua Produtividade</h3>
-                    <p class="benefit-description">Automatize tarefas repetitivas e foque no que realmente importa, economizando horas do seu dia.</p>
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="benefit-title">Conhecimento Prático</h3>
+                    <p class="benefit-description">Aprenda com exemplos reais e projetos práticos que você pode aplicar imediatamente.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="benefit-title">Destaque-se no Mercado</h3>
-                    <p class="benefit-description">Profissionais com habilidades em IA sÃ£o cada vez mais valorizados e recebem salÃ¡rios atÃ© 40% maiores.</p>
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="benefit-title">Resultados Comprovados</h3>
+                    <p class="benefit-description">Métodos testados e aprovados por profissionais que já estão no mercado.</p>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="benefit-title">Crie ConteÃºdo IncrÃ­vel</h3>
-                    <p class="benefit-description">Produza textos, imagens e estratÃ©gias de alta qualidade em uma fraÃ§Ã£o do tempo tradicional.</p>
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="benefit-title">Comunidade Ativa</h3>
+                    <p class="benefit-description">Faça parte de uma comunidade engajada e receba suporte contínuo.</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section class="modules">
         <div class="container">
-            <h2 class="section-title">O que vocÃª vai aprender</h2>
+            <h2 class="section-title">O que você vai aprender</h2>
             <div class="modules-list">
                 <div class="module-item">
-                    <h3 class="module-title"><span class="module-number">1</span> Fundamentos da IA</h3>
-                    <p class="module-description">Entenda os conceitos bÃ¡sicos de IA e como ela estÃ¡ transformando o mercado de trabalho, sem complicaÃ§Ãµes tÃ©cnicas.</p>
+                    <div class="module-title">
+                        <span class="module-number">1</span>
+                        Fundamentos de IA
+                    </div>
+                    <p class="module-description">Entenda os conceitos básicos e a evolução da Inteligência Artificial.</p>
                 </div>
                 <div class="module-item">
-                    <h3 class="module-title"><span class="module-number">2</span> Ferramentas PrÃ¡ticas de IA</h3>
-                    <p class="module-description">Domine as principais ferramentas de IA disponÃ­veis no mercado e aprenda a aplicÃ¡-las em projetos reais.</p>
+                    <div class="module-title">
+                        <span class="module-number">2</span>
+                        Ferramentas Práticas
+                    </div>
+                    <p class="module-description">Domine as principais ferramentas e plataformas de IA do mercado.</p>
                 </div>
                 <div class="module-item">
-                    <h3 class="module-title"><span class="module-number">3</span> IA para Marketing e ConteÃºdo</h3>
-                    <p class="module-description">Crie estratÃ©gias de marketing, textos persuasivos e conteÃºdo visual utilizando IA para aumentar seus resultados.</p>
-                </div>
-                <div class="module-item">
-                    <h3 class="module-title"><span class="module-number">4</span> AutomaÃ§Ã£o de Processos com IA</h3>
-                    <p class="module-description">Automatize fluxos de trabalho e processos empresariais para economizar tempo e recursos.</p>
-                </div>
-                <div class="module-item">
-                    <h3 class="module-title"><span class="module-number">5</span> Projeto PrÃ¡tico Final</h3>
-                    <p class="module-description">Aplique todo o conhecimento adquirido em um projeto real que resolva um problema especÃ­fico do seu negÃ³cio ou carreira.</p>
+                    <div class="module-title">
+                        <span class="module-number">3</span>
+                        Aplicações Reais
+                    </div>
+                    <p class="module-description">Aprenda a aplicar IA em diferentes contextos e negócios.</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section class="testimonials">
         <div class="container">
-            <h2 class="section-title">O que dizem nossos alunos</h2>
+            <h2 class="section-title">O que nossos alunos dizem</h2>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"Nunca imaginei que poderia usar IA no meu dia a dia. Hoje economizo mais de 15 horas por semana com as tÃ©cnicas que aprendi no curso."</p>
+                    <p class="testimonial-text">O curso transformou completamente minha visão sobre IA. Agora consigo aplicar em meus projetos com confiança.</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">MR</div>
+                        <div class="author-avatar">JD</div>
                         <div class="author-info">
-                            <h4>Marcos Ribeiro</h4>
-                            <p>Gerente de Marketing</p>
+                            <h4>João Silva</h4>
+                            <p>Desenvolvedor</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"Consegui triplicar minha produÃ§Ã£o de conteÃºdo e ainda melhorar a qualidade. O investimento no curso se pagou em menos de um mÃªs."</p>
+                    <p class="testimonial-text">Conteúdo prático e atualizado. Recomendo para quem quer se destacar no mercado de trabalho.</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">CS</div>
+                        <div class="author-avatar">MS</div>
                         <div class="author-info">
-                            <h4>Carla Santos</h4>
-                            <p>Produtora de ConteÃºdo</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Mesmo sem conhecimento tÃ©cnico, consegui implementar soluÃ§Ãµes de IA na minha empresa que economizaram R$15.000 por mÃªs em processos manuais."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RA</div>
-                        <div class="author-info">
-                            <h4>Roberto Almeida</h4>
-                            <p>EmpresÃ¡rio</p>
+                            <h4>Maria Santos</h4>
+                            <p>Analista de Dados</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section id="cadastro" class="cta-section">
+
+    <section id="form" class="form-section">
         <div class="container">
-            <div class="cta-box">
-                <h2 class="cta-title">Garanta sua vaga com condiÃ§Ã£o especial</h2>
-                <p class="cta-description">Preencha o formulÃ¡rio abaixo e receba em primeira mÃ£o o acesso ao curso com 50% de desconto na prÃ©-venda.</p>
-                
-                <!-- FormulÃ¡rio com atributos do Netlify Forms -->
-                <form id="lead-form" name="lead-form" method="POST" action="/thank-you" netlify>
-                    <!-- Campo honeypot para evitar spam -->
-                    <p class="hidden" style="display: none;">
-                        <label>NÃ£o preencha este campo se vocÃª for humano: <input name="bot-field" /></label>
-                    </p>
-                    
-                    <!-- Campo oculto necessÃ¡rio para o Netlify Forms identificar o formulÃ¡rio -->
-                    <input type="hidden" name="form-name" value="lead-form">
-                    
+            <div class="form-container">
+                <h2 class="section-title">Garanta sua vaga</h2>
+                <form name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contact">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="nome" placeholder="Seu nome completo" required>
+                        <label for="name">Nome completo</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="Seu melhor e-mail" required>
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" class="form-control" name="whatsapp" placeholder="Seu WhatsApp com DDD" required>
-                    </div>
-                    <button type="submit" class="submit-button">QUERO GARANTIR MINHA VAGA <i class="fas fa-lock"></i></button>
+                    <button type="submit" class="cta-button">Quero me inscrever</button>
                 </form>
-                
-                <div class="guarantee">
-                    <span class="guarantee-icon"><i class="fas fa-shield-alt"></i></span>
-                    <span>Seus dados estÃ£o protegidos e nÃ£o serÃ£o compartilhados.</span>
-                </div>
             </div>
         </div>
     </section>
-    
+
     <footer>
-        <div class="container footer-content">
-            <div class="footer-logo">IA Master</div>
-            <div class="footer-links">
-                <a href="#" class="footer-link">Termos de Uso</a>
-                <a href="#" class="footer-link">PolÃ­tica de Privacidade</a>
-                <a href="#" class="footer-link">Fale Conosco</a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>IA Master</h3>
+                    <p>Transformando carreiras através da Inteligência Artificial.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="footer-social">
-                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <p class="footer-copyright">Â© 2025 IA Master. Todos os direitos reservados.</p>
         </div>
     </footer>
-    
 </body>
 </html>
